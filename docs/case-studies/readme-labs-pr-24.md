@@ -6,8 +6,9 @@ request is open and may change; this case is pinned to one revision.
 ## Pinned and dated sources
 
 - The local [issue #23 source record](sources/readme-labs-issue-23.md) preserves
-  the owner request observed from a mutable GitHub issue, including its source
-  timestamps and canonical body digest.
+  the request text observed from a mutable GitHub issue, including source
+  identity, timestamps, body digests, and the limit on its authority
+  classification.
 - [PR #24 at `0562a5b`](https://github.com/k421o/readme-labs/tree/0562a5b6bd08eb7b5caf38ca5743c4a6adf0aab1)
   is the reviewed implementation, based on
   [`f49daf7`](https://github.com/k421o/readme-labs/tree/f49daf761b377859f7d940d9a2a9402f0657c035).
