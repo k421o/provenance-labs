@@ -1,0 +1,4 @@
+interface:
+  display_name: "Provenance Realism Review"
+  short_description: "Trace requirements and test realistic guarantees."
+  default_prompt: "Use $provenance-realism-review to review this change's consequential requirements, evidence lineage, and failure semantics."
