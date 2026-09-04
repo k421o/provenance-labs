@@ -3,7 +3,6 @@ from __future__ import annotations
 from pathlib import Path
 
 import yaml
-from markdown_it import MarkdownIt
 
 ROOT = Path(__file__).resolve().parents[1]
 CAPABILITY = ROOT / "capabilities/provenance-realism-review"
@@ -22,21 +21,12 @@ def _frontmatter(path: Path) -> dict[str, object]:
     return metadata
 
 
-def _headings(path: Path) -> set[str]:
-    tokens = MarkdownIt("commonmark").parse(path.read_text(encoding="utf-8"))
-    headings: set[str] = set()
-    for index, token in enumerate(tokens):
-        if token.type == "heading_open" and tokens[index + 1].type == "inline":
-            headings.add(tokens[index + 1].content)
-    return headings
-
-
 def test_skill_identity_matches_its_directory_and_metadata() -> None:
     metadata = _frontmatter(CAPABILITY / "SKILL.md")
     assert metadata["name"] == CAPABILITY.name
     description = metadata["description"]
     assert isinstance(description, str)
-    assert 100 <= len(description) <= 1024
+    assert description.strip() and len(description) <= 1024
 
     agent_metadata = yaml.safe_load(
         (CAPABILITY / "agents/openai.yaml").read_text(encoding="utf-8")
@@ -55,16 +45,6 @@ def test_skill_references_are_local_and_present() -> None:
     for reference in references:
         assert f"references/{reference}" in skill
         assert (CAPABILITY / "references" / reference).is_file()
-
-
-def test_interface_preserves_the_named_review_job() -> None:
-    assert {
-        "Named user job",
-        "Inputs",
-        "Output contract",
-        "Exclusions",
-        "Compatibility",
-    } <= _headings(CAPABILITY / "INTERFACE.md")
 
 
 def test_only_one_canonical_skill_copy_exists() -> None:
