@@ -15,28 +15,27 @@ a mechanism's internal consistency with evidence that the mechanism is needed.
    issue or user request, applicable owner guidance, and authorized scope. Read
    enough code, tests, prose, and platform contracts to trace the material
    claims. Treat branch names and moving pages as locators, not pinned evidence.
-2. **Build a claim ledger.** Extract each material requirement, constraint,
-   mechanism, guarantee, rationale, observation, and hypothesis. Trace its
-   source role and derivation using
-   [claim lineage](references/claim-lineage.md). Ask: if the implementation,
-   its new prose, and its new tests disappeared, what support for the
-   requirement would remain?
+2. **Trace disputed claims.** Use [claim lineage](references/claim-lineage.md)
+   when a consequential requirement's source or derivation is unclear. Ask
+   what support would remain without the new implementation, prose, and tests.
+   A pinned source and explanation usually suffice; use a ledger only when
+   several interacting claims need one.
 3. **Reconstruct the operation.** Independently list actors, resources,
    ownership, custody, private and shared state, durable writes, publication
    points, and the successful postcondition. Do not inherit “transaction,”
    “rollback,” or “provenance” from names alone.
-4. **State the failure model.** Consider ordinary exceptions, abrupt process
-   death, retry, concurrent actors, and operator recovery. Classify each as
-   relevant, explicitly excluded, or inapplicable from the reconstructed state
-   and actors, and explain why. Do not invent scope from owner silence or demand
-   a decision about an irrelevant class. Use
-   [failure semantics](references/failure-semantics.md).
+4. **State the relevant failure model.** Use the promised behavior and actual
+   actors to select exception, crash, retry, concurrency, or recovery paths
+   that could change the conclusion. Use
+   [failure semantics](references/failure-semantics.md) for their distinctions.
+   Do not require an exclusion record or owner decision for irrelevant classes.
 5. **Classify mechanisms accurately.** Distinguish prevention, atomic publish,
    rollback, compensation, cleanup, retry, resume, crash recovery, Git
    recovery, and provenance recording. A mechanism may be useful while its
    label or claimed scope is wrong.
-6. **Audit oracle genealogy.** Trace where every test expectation came from. A
-   same-change test can validly show conformance to an owner request or external
+6. **Check the disputed test oracle.** Trace the expectations offered as
+   evidence for the claim. A same-change test can validly show conformance to
+   an owner request or external
    contract. It cannot, by passing, prove the necessity of a requirement that
    was introduced only to describe the implementation. Identify derivation
    edges; do not infer circularity from chronology or authorship.
@@ -55,37 +54,12 @@ a mechanism's internal consistency with evidence that the mechanism is needed.
    owner decisions, and inference. Do not convert vocabulary preferences into
    findings when behavior and scope are already clear.
 
-## Finding standard
-
-For each finding, provide:
-
-- a tight code, test, prose, or architecture location;
-- the exact claim and why it matters;
-- the claimed property versus the demonstrated property;
-- the relevant authority and evidence lineage;
-- a direct observation or discriminating counterexample;
-- realistic impact under the named failure or decision path;
-- the smallest correction direction; and
-- confidence and unverified limits.
-
-Rank findings by likely system or decision impact. A terminology finding is
-material when the inflated term can drive an unsafe design, false assurance,
-or unnecessary machinery—not merely because another word is more precise.
-
-## No-material-findings conclusion
+## Completion
 
 If no material issue remains, say so. Name any unverified authority assumption,
-failure class, interleaving, remote behavior, or recovery operation. Preserve
-anti-findings:
-
-- do not say an exception handler “does nothing” when it aids retry;
-- do not call a test circular merely because it was authored with the change;
-- do not assume Git replaces operational recovery outside committed tracked
-  state;
-- do not demand crash safety when the owner explicitly promises only
-  exception cleanup; and
-- do not demand provenance machinery when a local fact and owner decision are
-  sufficient.
+failure class, interleaving, remote behavior, or recovery operation that could
+materially affect the conclusion. The finding reference holds the reporting
+shape and false-positive checks; do not produce a separate no-finding checklist.
 
 ## Change requests
 
