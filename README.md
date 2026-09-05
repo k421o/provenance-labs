@@ -13,6 +13,18 @@ The first derived capability is
 The skill is an application of the domain model, not authority over the model
 or over the repositories it reviews.
 
+## Repository map
+
+```text
+.
+├── domain/        # Change shared claim and failure semantics here.
+├── capabilities/  # Apply the domain model to reviews; edit the skill here.
+├── evals/         # Keep held-out expectations separate from agent-visible scenarios.
+├── docs/          # Keep pinned observations distinct from general domain claims.
+├── scripts/       # Automate repository checks, not judgments about claim validity.
+└── tests/         # Check contracts and mechanisms; review quality needs actual trials.
+```
+
 ## Current work
 
 - Build a claim-lineage vocabulary that separates authority, observation,
@@ -56,20 +68,8 @@ Owner decisions, contracts, observations       Proposed mechanism and tests
 
 The [domain charter](docs/domain-charter.md) owns scope and evidence rules.
 The stable core begins with the [glossary](domain/glossary.md) and
-[review model](domain/review-model.md). Controlled scenarios live under
-[`evals/`](evals/README.md); they do not become proof merely by being checked
-in.
-
-## Project layout
-
-```text
-docs/           Charter and pinned case studies
-domain/         Claim-lineage and failure-semantics model
-capabilities/   Agent-facing projections derived from the domain
-evals/          Paired review scenarios and held-out expectations
-scripts/        Deterministic repository validation
-tests/          Structural contract tests
-```
+[review model](domain/review-model.md). Controlled scenarios do not become
+proof merely by being checked in.
 
 Directories are added only when current evidence needs them. This bootstrap
 does not include ingestion, artifact custody, catalogs, generated products,
