@@ -68,9 +68,8 @@ Owner decisions, contracts, observations       Proposed mechanism and tests
 
 The [domain charter](docs/domain-charter.md) owns scope and evidence rules.
 The stable core begins with the [glossary](domain/glossary.md) and
-[review model](domain/review-model.md). Controlled scenarios live under
-[`evals/`](evals/README.md); they do not become proof merely by being checked
-in.
+[review model](domain/review-model.md). Controlled scenarios do not become
+proof merely by being checked in.
 
 Directories are added only when current evidence needs them. This bootstrap
 does not include ingestion, artifact custody, catalogs, generated products,
